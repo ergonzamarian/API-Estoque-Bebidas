@@ -10,6 +10,13 @@ Desenvolvido em Java com JPA, Swagger e PostgreSQL
 
 Após o término do projeto tentei efetuar um deploy para o Heroku para que a API ficasse disponível de forma online no entanto não obtive sucesso nessa parte porém posteriormente posso deixar ele online.
 
+Para executar a API:
+- Baixe todo o projeto presente na pasta "apirest"
+- Abra o projeto com a IDE de sua preferência
+- configure o banco através do "application.properties" presente no caminho "src/main/resources"
+Dentro deste arquivo constará a seguinte configuração
+
+
 ## Cadastrar
 
 Para o cadastramento, usar os textos em Json abaixo:
