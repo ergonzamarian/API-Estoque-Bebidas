@@ -1,0 +1,91 @@
+public String cadastraBebida(int numeroSecao,String TipoDeBebida, String nomeDaBebida,
+			int VolumeQueDesejaInserir,String dataEntrada, String horaEntrada, String responsavelEntrada, int volumeTotal, Bebida bebida)
+	{
+		
+		String queryTipo = "SELECT tipoDeBebidaNaSecao FROM SecaoBebida "
+					 + "WHERE numeroDaSecao = '"+numeroSecao+"'";
+		List<SecaoBebida> listarVolume = em.createQuery(queryTipo).getResultList();
+		
+		for (int i = 0; i < listarVolume.size(); i++) {
+			quantidadeDeLinhasBanco = listarVolume.lastIndexOf(i);
+		}
+		
+		if(increment<=0){
+			
+			increment++;
+			estoqueRepository.saveAndFlush(bebida);
+//			String queryInsereNome = "INSERT INTO Bebida "
+//					+ "(idBebida,nomeBebida)"
+//					+ "VALUES"
+//					+ "(1,'"+nomeDaBebida+"')";
+//			List<SecaoBebida> InserindoNomeDaBebida = em.createQuery(queryInsereNome).getResultList();
+//			
+//			
+//			String queryInsereSecao = "INSERT INTO SecaoBebida "
+//					+ "(idSecaoBebida,volumeTotalSecao, numeroDaSecao, tipoDeBebidaNaSecao "
+//					+ "volumeDaBebida) "
+//					+ "VALUES"
+//					+ "(increment,'"+(volumeTotal+VolumeQueDesejaInserir)+"','"+numeroSecao+"','"+TipoDeBebida+"','"+VolumeQueDesejaInserir+"')";
+//			List<SecaoBebida> InserindoNaSecao = em.createQuery(queryInsereSecao).getResultList();
+//			
+//			String queryInsereHistorico = "INSERT INTO RegistroEntrada "
+//					+ "(idRegistroEntrada, dataEntrada, horaEntrada, responsavelPelaEntrada)"
+//					+ "VALUES"
+//					+ "('"+increment+"','"+dataEntrada+"','"+horaEntrada+"','"+responsavelEntrada+"')";
+//			List<SecaoBebida> InserindoNoHistorico = em.createQuery(queryInsereHistorico).getResultList();
+			
+			return "Cadastro efetuado com Sucesso";
+			
+		}
+		else {
+			if((volumeTotal+VolumeQueDesejaInserir < 500) && 
+					TipoDeBebida == "ALCOOLICA"||(volumeTotal+VolumeQueDesejaInserir<400) && 
+			TipoDeBebida == "NAO_ALCOOLICA")
+			{
+				if(numeroSecao >= 1 && numeroSecao<=5) 
+				{
+					if(queryTipo == TipoDeBebida) 
+					{
+						
+						String queryInsereNome = "INSERT INTO Bebida "
+								+ "(idBebida,nomeBebida)"
+								+ "VALUES"
+								+ "('"+(increment+1)+"','"+nomeDaBebida+"')";
+						List<SecaoBebida> InserindoNomeDaBebida = em.createQuery(queryInsereNome).getResultList();
+						
+						
+						String queryInsereSecao = "INSERT INTO SecaoBebida "
+								+ "(idSecaoBebida,volumeTotalSecao, numeroDaSecao, tipoDeBebidaNaSecao "
+								+ "volumeDaBebida) "
+								+ "VALUES"
+								+ "('"+(increment+1)+"','"+(volumeTotal+VolumeQueDesejaInserir)+"','"+numeroSecao+"','"+TipoDeBebida+"','"+VolumeQueDesejaInserir+"')";
+						List<SecaoBebida> InserindoNaSecao = em.createQuery(queryInsereSecao).getResultList();
+						
+						String queryInsereHistorico = "INSERT INTO RegistroEntrada "
+								+ "(idRegistroEntrada, dataEntrada, horaEntrada, responsavelPelaEntrada)"
+								+ "VALUES"
+								+ "('"+(increment+1)+"','"+dataEntrada+"','"+horaEntrada+"','"+responsavelEntrada+"')";
+						List<SecaoBebida> InserindoNoHistorico = em.createQuery(queryInsereHistorico).getResultList();
+						
+						return "Cadastro efetuado com Sucesso";
+					}
+					else
+					{
+						
+						return "Essa Seção não Armazena esse tipo de bebida Adicione outro tipo";
+						 
+					}
+				}
+				else
+				{
+					return "As Seções estão em um intervalo de 1 a 5, escolha outra Seção";
+				}
+					
+			}
+			else
+			{
+				 return "Volume da Seção excedido. Volume Alcoólica = 500, Volume Não Alcoólica = 400";
+			}
+		}
+		
+	}
