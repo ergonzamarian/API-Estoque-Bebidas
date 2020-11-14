@@ -8,9 +8,7 @@ Desenvolvido em Java com JPA, Swagger e PostgreSQL
 ```
 ## Como Utilizar
 
-Após o término do projeto efetuei um deploy para o Heroku para que a API ficasse disponível de forma online, para que o projeto possa ser mais fácil de testar. 
-
-Acesse o link [API.Estoque.Bebidas](https://github.com/ergonlima/)
+Após o término do projeto tentei efetuar um deploy para o Heroku para que a API ficasse disponível de forma online no entanto não obtive sucesso nessa parte porém posteriormente posso deixar ele online.
 
 ## Cadastrar
 
