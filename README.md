@@ -24,7 +24,7 @@ spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
 spring.datasource.url= jdbc:postgresql://localhost:5432/banco_de_bebidas_estoque
 spring.datasource.username=postgres
 spring.datasource.password=banco123
-spring.jpa.hibernate.ddl-auto=update
+spring.jpa.hibernate.ddl-auto=update 
 
 ```
 - Altere para:
